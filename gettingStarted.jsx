@@ -4,6 +4,7 @@ import "./styles/main.css";
 
 import Header from "./components/header/Header";
 import Example from "./components/example/Example";
+import Header from "./components/header/Header";)
 
 ReactDOM.render(<Header />, document.getElementById("reactappHeader"));
 
