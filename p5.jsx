@@ -7,26 +7,19 @@ import Example from "./components/example/Example";
 import States from "./components/states/States";
 
 ReactDOM.render(<Header />, document.getElementById("reactappHeader"));
-const App = () => {
-    return (
-        <HashRouter>
-            <div>
-                <nav>
-                    <ul>
-                        <li>
-                            <Link to="/states">States</Link>
-                        </li>
-                        <li>
-                            <Link to="/example">Example</Link>
-                        </li>
-                    </ul>
-                </nav>
-                <hr />
-                <Route path="/states" component={States} />
-                <Route path="/example" component={Example} />
-            </div>
-        </HashRouter>
-    );
-};
 
-ReactDOM.render(<App />, document.getElementById("reactapp"));
+ReactDOM.render(
+    <HashRouter>
+        <div className="container">
+            <div className="menu">
+                <Link to="/example">Example</Link>
+            </div>
+            <div className="menu">
+                <Link to="/states">States</Link>
+            </div>
+        </div>
+        <Route path="/states" component={States} />
+        <Route path="/example" component={Example} />
+    </HashRouter>,
+    document.getElementById("reactapp")
+);
