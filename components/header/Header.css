@@ -1,16 +1,16 @@
-
-header-container {
-    background-color: #4CAF50;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
+div.header {
+  font-size: 48pt;
+  font-family: AppleGothic, serif;
+  transition: 0.8s;
+  border: green dotted 2px;
+  padding: 10px;
+  text-align: center;
+}
+div.header:hover {
+  transform: rotateY(360deg);
 }
 
-.header-content {
-    margin-top: 20px;
-}
-
-.title {
-    font-size: 24px;
-    font-weight: bold;
+div.gradient {
+  height: 100px;
+  background-image: linear-gradient(green, #b42121);
 }
