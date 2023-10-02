@@ -8,6 +8,8 @@ import "./Example.css";
 import Prism from "prismjs";
 import "prismjs/components/prism-jsx.js";
 import "../../node_modules/prismjs/themes/prism.css";
+// eslint-disable-next-line no-unused-vars
+import { name } from "file-loader";
 
 /* eslint-disable  react/jsx-one-expression-per-line */
 /* eslint-disable  react/destructuring-assignment */
@@ -23,6 +25,7 @@ class Example extends React.Component {
     // We read the example model data into the state variable 'name'
     this.state = {
       name: window.models.exampleModel().name,
+      motto: window.models.exampleModel().motto,
       counter: 0,
       inputValue: "",
       buttonWasClicked: "",
@@ -48,8 +51,7 @@ class Example extends React.Component {
     // that increments the counter state and instruct the
     // DOM to call it every 2 seconds.
     /* eslint-disable react/no-access-state-in-setstate */
-    const counterIncrFunc = () =>
-      this.setState({
+    const counterIncrFunc = () => this.setState({
         counter: this.state.counter + 1,
       });
     this.timerID = setInterval(counterIncrFunc, 2 * 1000);
@@ -104,7 +106,13 @@ class Example extends React.Component {
         <h1>Project 4 React.js Example</h1>
 
         <div className="motto-update">
-          {/* Your problem #1 motto displaying and updating widget goes here */}
+            <p>Name: {this.state.name}</p>
+            <p>Motto: {this.state.motto}</p>
+            <input
+                type="text"
+                value={this.state.motto}
+                onChange={(e) => this.setState({ motto: e.target.value })}
+            />
         </div>
 
         <p>
