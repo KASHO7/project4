@@ -8,8 +8,6 @@ import "./Example.css";
 import Prism from "prismjs";
 import "prismjs/components/prism-jsx.js";
 import "../../node_modules/prismjs/themes/prism.css";
-// eslint-disable-next-line no-unused-vars
-import { name } from "file-loader";
 
 /* eslint-disable  react/jsx-one-expression-per-line */
 /* eslint-disable  react/destructuring-assignment */
@@ -36,6 +34,7 @@ class Example extends React.Component {
     // generate new functions that handle the event by just calling
     // the method that handles the event.
     this.handleChangeBound = (event) => this.handleChange(event);
+    this.handleMottoChangeBound = (event) => this.handleMottoChange(event);
     // Note: A commmon idiom in React code is to use JavaScript bind() to
     // smash the method to accomplish this passthrough to the method:
     //      this.handleChange = this.handleChange.bind(this);
@@ -51,7 +50,8 @@ class Example extends React.Component {
     // that increments the counter state and instruct the
     // DOM to call it every 2 seconds.
     /* eslint-disable react/no-access-state-in-setstate */
-    const counterIncrFunc = () => this.setState({
+    const counterIncrFunc = () =>
+      this.setState({
         counter: this.state.counter + 1,
       });
     this.timerID = setInterval(counterIncrFunc, 2 * 1000);
@@ -72,6 +72,9 @@ class Example extends React.Component {
     this.setState({ inputValue: event.target.value });
   }
 
+  handleMottoChange(event) {
+    this.setState({ motto: event.target.value });
+  }
   // Method called when the button is pushed
   /* eslint-disable-next-line no-unused-vars */
   handleButtonClick(buttonName, event) {
@@ -106,13 +109,20 @@ class Example extends React.Component {
         <h1>Project 4 React.js Example</h1>
 
         <div className="motto-update">
-            <p>Name: {this.state.name}</p>
-            <p>Motto: {this.state.motto}</p>
-            <input
-                type="text"
-                value={this.state.motto}
-                onChange={(e) => this.setState({ motto: e.target.value })}
-            />
+          {/* Your problem #1 motto displaying and updating widget goes here */}
+          {this.state.name}
+          <br />
+          {this.state.motto}
+          <hr></hr>
+        </div>
+        <div>
+          <label htmlFor="mottoId">Change Motto: </label>
+          <input
+            id="mottoId"
+            type="text"
+            value={this.state.motto}
+            onChange={this.handleMottoChangeBound}
+          />
         </div>
 
         <p>
