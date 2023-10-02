@@ -16,7 +16,7 @@ if (models === undefined) {
 
 models.exampleModel = function () {
   return {
-    name: "Kashyap Suthar",
-    motto:"Making the day better, one line of code at a time.",
+    name: "Hayden Hurst",
+    motto:"Create, Compile, Conquer.",
   };
 };
