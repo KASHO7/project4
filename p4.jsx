@@ -1,20 +1,43 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import Example from './Example';
-import States from './States';
+import './styles/main.css';
 
-function App() {
-    const [view, setView] = useState('example');
+import Header from './components/header/Header';
+import Example from './components/example/Example';
+import States from './components/states/States';
 
-    return (
-        <div>
-            <button onClick={() => setView(view === 'example' ? 'states' : 'example')}>
-                Switch to {view === 'example' ? 'States' : 'Example'}
-            </button>
+ReactDOM.render(
+    <Header/>,
+    document.getElementById('reactappHeader')
+);
 
-            {view === 'example' ? <Example /> : <States />}
-        </div>
-    );
+class Toggle extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {isToggleOn: true};
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick() {
+        this.setState(prevState => ({
+            isToggleOn: !prevState.isToggleOn
+        }));
+    }
+
+    render() {
+        return (
+            <div className="container">
+                <button onClick={this.handleClick}>
+                    {this.state.isToggleOn ? 'Switch to States' : 'Switch to Example'}
+                </button>
+                <hr />
+                {this.state.isToggleOn ? <Example /> : <States />}
+            </div>
+        );
+    }
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+    <Toggle />,
+    document.getElementById('reactapp')
+);
