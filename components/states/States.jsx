@@ -1,20 +1,44 @@
-import React from "react";
-import "./States.css";
+import React, { useState, useEffect } from 'react';
+import './States.css';
 
-/**
- * Define States, a React component of Project 4, Problem 2. The model
- * data for this view (the state names) is available at
- * window.models.states.
- */
-class States extends React.Component {
-  constructor(props) {
-    super(props);
-    console.log("window.models.states", window.models.states);
-  }
+function States() {
+    const [states, setStates] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
 
-  render() {
-    return <div>Replace this with the code for Project 4, Problem 2</div>;
-  }
+    useEffect(() => {
+        const fetchData = () => {
+            const statesData = window.models.states();
+            console.log('States Data:', statesData);
+            setStates(statesData);
+        };
+
+        fetchData();
+    }, []); // Empty dependency array ensures the effect runs once after the initial render
+
+    return (
+        <div className="states-container">
+            {/* Input field to accept substring */}
+            <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Enter substring..."
+            />
+
+            {/* Display substring used for filtering */}
+            <p>Substring: {searchTerm}</p>
+
+            {/* Filtered states list */}
+            <ul>
+                {states
+                    .filter((state) => state.toLowerCase().includes(searchTerm.toLowerCase())
+                    )
+                    .map((state, index) => (
+                        <li key={index}>{state}</li>
+                    ))}
+            </ul>
+        </div>
+    );
 }
 
 export default States;
